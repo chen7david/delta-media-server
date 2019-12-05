@@ -9,6 +9,12 @@ var multer  = require('multer')
 const path = require('path')
 var fs = require('fs')
 
+fs.unlink('src/media/1575551885305.png', function (err) {
+    if (err) throw err;
+    // if no error, file has been deleted successfully
+    console.log('File deleted!');
+});
+
 app.use('/public', express.static('public/'))
 app.use('/assets',express.static(__dirname + '/assets'))
 
@@ -22,6 +28,8 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage })
+
+
 
 
 
