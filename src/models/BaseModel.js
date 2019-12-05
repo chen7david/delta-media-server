@@ -1,4 +1,4 @@
-const knexfile = require('./../knexfile').development
+const knexfile = require('./../../knexfile').development
 const Knex = require('knex')(knexfile)
 const pluralize = require('pluralize')
 const { Model } = require('objection')
