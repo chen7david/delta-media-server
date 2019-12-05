@@ -1,43 +1,19 @@
 const express = require('express')
 const app = express()
 const server = require('http').createServer(app)
+const { upload, file } = require('./middleware')
 const { APP_PORT } = require('./config')
 const { Movie, Subtitle } = require('./models')
 const port = APP_PORT || 4000
 
-var multer  = require('multer')
-const path = require('path')
-var fs = require('fs')
-
-fs.unlink('src/media/1575551885305.png', function (err) {
-    if (err) throw err;
-    // if no error, file has been deleted successfully
-    console.log('File deleted!');
-});
-
 app.use('/public', express.static('public/'))
 app.use('/assets',express.static(__dirname + '/assets'))
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'src/media/');
-    },
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-})
-
-const upload = multer({ storage: storage })
-
-
-
-
-
+file.delete('1575584629262.pdf')
 
 app.get('/upload/movie', (req, res) => {
     res.sendFile(__dirname + '/public/index.html')
 })
-
 
 app.post('/upload/movie', upload.single('movie'), async (req, res) => {
     const { filename, mimetype} = req.file
