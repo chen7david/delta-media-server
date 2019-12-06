@@ -13,8 +13,18 @@
 .movie-card-thumbnail {
     
 }
+.movie-card-tile {
+    color: whitesmoke;
+    font-size: 20px;
+}
 
 .movie-card-info {
+    color: gainsboro;
     padding-left: 10px;
+    display: block;
+  width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
