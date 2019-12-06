@@ -2,9 +2,9 @@
   "name": "media-server",
   "version": "1.0.0",
   "description": "media server for managing media",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/server.js"
   },
   "repository": {
     "type": "git",

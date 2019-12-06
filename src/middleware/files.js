@@ -9,6 +9,7 @@ module.exports = {
                 console.log('file was not deleted because it could not be found!')
             }else{
                 console.log('File deleted!')
+                return
             }
         })
     }
