@@ -10,17 +10,23 @@
         <button class="btn">SUBMIT</button>
     </form>
 </div>
-<video width="500" height="280" autoplay controls controlsList="nodownload">
-    <source src="/media/video/1575591741854.mp4" type="video/mp4">
-    <track label="English" kind="subtitles" srclang="en" src="/media/caption/1575591741854_en.vtt" default>
-    <!-- <track label="Chinese" kind="subtitles" srclang="en" src="/media/video/Avatar.cn.vtt" default> -->
-</video>
+
 
 
 {% for movie in movies %}
-    {{movie.title}}
+    <div class="movie-card">
+        <div class="movie-card-thumbnail">
+            <video style="outline: none" width="250" height="140" autoplay controls controlsList="nodownload">
+                <source src="/media/video/{{movie.fileName}}" type="video/mp4">
+                <track label="English" kind="subtitles" srclang="en" src="/media/caption/1575591741854_en.vtt" default>
+                <!-- <track label="Chinese" kind="subtitles" srclang="en" src="/media/video/Avatar.cn.vtt" default> -->
+            </video>
+        </div>
+        <div class="movie-card-info">
+            <h5>{{movie.title}}</h5>
+            {{movie.description}}
+        </div>
+    </div>
 {% endfor %}
 <a href="/media/video/1575590956144.mp4" class="btn btn-light btn-sm" download="avatar">DOWNLOAD</a>
 {% endblock %}
-
-    
