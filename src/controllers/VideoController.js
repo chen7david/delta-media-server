@@ -3,6 +3,10 @@ const { Movie, Subtitle } = require('./../models')
 const { upload, file } = require('./../middleware')
 
 module.exports = {
+    getVideos: async(req, res) => {
+        const movies = await Movie.query()
+        res.render('movies.html', {movies})
+    },
     getVideoUpload: (req, res) => {
         res.render('index.html')
     },

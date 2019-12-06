@@ -15,6 +15,11 @@
     <track label="English" kind="subtitles" srclang="en" src="/media/caption/1575591741854_en.vtt" default>
     <!-- <track label="Chinese" kind="subtitles" srclang="en" src="/media/video/Avatar.cn.vtt" default> -->
 </video>
+
+
+{% for movie in movies %}
+    {{movie.title}}
+{% endfor %}
 <a href="/media/video/1575590956144.mp4" class="btn btn-light btn-sm" download="avatar">DOWNLOAD</a>
 {% endblock %}
 
