@@ -16,17 +16,21 @@
 {% for movie in movies %}
     <div class="movie-card">
         <div class="movie-card-thumbnail">
-            <video style="outline: none" width="250" height="140" autoplay controls controlsList="nodownload">
+            <video proster="/media/image/s5tbehfbawjatgi50tqc.gif" style="outline: none"  width="250" height="140" preload="none" controls controlsList="nodownload">
                 <source src="/media/video/{{movie.fileName}}" type="video/mp4">
                 <track label="English" kind="subtitles" srclang="en" src="/media/caption/1575591741854_en.vtt" default>
                 <!-- <track label="Chinese" kind="subtitles" srclang="en" src="/media/video/Avatar.cn.vtt" default> -->
             </video>
         </div>
         <div class="movie-card-info">
-            <h5>{{movie.title}}</h5>
-            {{movie.description}}
+            <div class="movie-card-tile">
+                    {{movie.title}}
+            </div>
+            <p>{{movie.description}}</p>
+            <a href="/media/video/{{movie.fileName}}" class="btn btn-light btn-sm" download="{{movie.title}}">DOWNLOAD</a>
         </div>
     </div>
+    
 {% endfor %}
-<a href="/media/video/1575590956144.mp4" class="btn btn-light btn-sm" download="avatar">DOWNLOAD</a>
+
 {% endblock %}

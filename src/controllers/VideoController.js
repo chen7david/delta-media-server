@@ -20,7 +20,9 @@ module.exports = {
             description, 
             duration
         })
-        res.status(200).json(movie)
+        
+        backURL=req.header('Referer') || '/'
+        res.redirect(backURL)
     }
 
 }
