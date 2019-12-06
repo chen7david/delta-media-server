@@ -3,7 +3,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('movies',(table)=>{
     table.increments()
     table.string('movieId').unique().notNullable()
-    table.string('title').notNullable()
+    table.string('title').unique().notNullable()
     table.string('fileName').notNullable()
     table.string('mimeType').notNullable()
     table.text('description')

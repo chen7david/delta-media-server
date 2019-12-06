@@ -1,45 +1,26 @@
 const express = require('express')
 const app = express()
 const server = require('http').createServer(app)
-const { upload, file } = require('./middleware')
 const { APP_PORT } = require('./config')
-const { Movie, Subtitle } = require('./models')
 const port = APP_PORT || 4000
+const { VideoRoutes } = require('./routes')
+const nunjucks = require('nunjucks')
 
-app.use('/media', express.static('./src/media/'))
-app.use('/assets',express.static(__dirname + '/assets'))
+// NUNJUCKS
+nunjucks.configure(__dirname + '/views', {
+    autoescape: true,
+    express: app
+});
 
-// file.delete('video/Avatar.en.vtt')
+app.set('view engine', 'njk');
 
-app.get('/upload/movie', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html')
-})
+// SET PUBLIC STATIC DIRECTORIES
+app.use('/media', express.static(__dirname + '/media/'))
+app.use('/assets',express.static(__dirname + '/public/assets'))
 
-app.post('/upload/movie', upload.single('movie'), async (req, res) => {
-    const { filename, mimetype} = req.file
-    const { title, description, duration } = req.body
-    const movie = await Movie.query().insert({
-        fileName: filename,
-        mimeType: mimetype,
-        title, 
-        description, 
-        duration
-    })
-    res.status(200).json(movie)
-})
+// Routes
 
-app.delete('/upload/movie/', upload.single('movie'), async (req, res) => {
-    const { filename, mimetype} = req.file
-    const { title, description, duration } = req.body
-    const movie = await Movie.query().insert({
-        fileName: filename,
-        mimeType: mimetype,
-        title, 
-        description, 
-        duration
-    })
-    res.status(200).json(movie)
-})
+app.use(VideoRoutes)
 
 
 server.listen(port, () => console.log(`running at http://localhost:${port}`))
