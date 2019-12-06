@@ -8,6 +8,7 @@ exports.up = function(knex) {
     table.string('mimeType').notNullable()
     table.text('description')
     table.integer('duration')
+    table.dateTime('releaseDate')
     table.timestamps(true,true)
   })
 }

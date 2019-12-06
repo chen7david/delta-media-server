@@ -1,17 +1,17 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('subtitles',(table)=>{
+    return knex.schema.createTable('covers',(table)=>{
       table.increments()
-      table.string('subId').unique().notNullable()
+      table.string('covId').unique().notNullable()
+      table.integer('type').notNullable()
       table.string('fileName').notNullable()
-      table.string('label')
-      table.string('langCode')
+      table.boolean('primary').defaultTo(false)
       table.integer('movie_id').notNullable().references('id').inTable('movies').onDelete('CASCADE').index()
       table.timestamps(true,true)
     })
 }
   
 exports.down = function(knex) {
-    return knex.schema.dropTable('subtitles')
+    return knex.schema.dropTable('covers')
 };
   
