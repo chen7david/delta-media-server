@@ -2,13 +2,35 @@
 
 {% block body %} 
 <div class="card-body" >
-    <form action="/video/upload" method="post" max-width="300" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="title" class="form-control">
-        <input type="text" name="description" placeholder="description" class="form-control">
-        <input type="text" name="duration" placeholder="duration" class="form-control">
-        <input type="file" name="movie" class="form-control">
-        <button class="btn">SUBMIT</button>
-    </form>
+    <form action="/video/upload" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" name="title" class="form-control" placeholder="Moana">
+        </div>
+        <div class="input-group my-3">
+            <div class="custom-file">
+              <input type="file" name="video" class="custom-file-input">
+              <label class="custom-file-label" for="inputGroupFile01">Choose Video file</label>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" name="cover" class="custom-file-input">
+              <label class="custom-file-label" for="inputGroupFile01">Choose Cover file</label>
+            </div>
+        </div>
+        <div class="input-group my-3">
+            <div class="custom-file">
+              <input type="file" name="thumbnail" class="custom-file-input">
+              <label class="custom-file-label" for="inputGroupFile01">Choose Thumbnail file</label>
+            </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button class="btn btn-outline-success">UPLOAD</button>
+      </form>
 </div>
 
 
@@ -16,8 +38,8 @@
 {% for movie in movies %}
     <div class="movie-card">
         <div class="movie-card-thumbnail">
-            <video proster="/media/image/s5tbehfbawjatgi50tqc.gif" style="outline: none"  width="250" height="140" preload="none" controls controlsList="nodownload">
-                <source src="/media/video/{{movie.fileName}}" type="video/mp4">
+            <video proster="/media/image/{{movie.poster}}" style="outline: none"  width="250" height="140" preload="none" controls controlsList="nodownload">
+                <source src="/media/video/{{movie.fileName}}" type="{{movie.mimeType}}">
                 <track label="English" kind="subtitles" srclang="en" src="/media/caption/1575591741854_en.vtt" default>
                 <!-- <track label="Chinese" kind="subtitles" srclang="en" src="/media/video/Avatar.cn.vtt" default> -->
             </video>

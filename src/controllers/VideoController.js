@@ -11,18 +11,24 @@ module.exports = {
         res.render('index.html')
     },
     postVideoUpload: async (req, res) => {
-        const { filename, mimetype } = req.file
+        // console.log({files:req.files})
+        // console.log({body:req.body})
+
+        const { video, cover, thumbnail } = req.files
         const { title, description, duration } = req.body
         const movie = await Movie.query().insert({
-            fileName: filename,
-            mimeType: mimetype,
+            fileName: video[0].filename,
+            mimeType: video[0].mimetype,
+            size: video[0].size,
+            cover: cover[0].filename,
+            poster: thumbnail[0].filename,
             title, 
-            description, 
-            duration
+            description
         })
         
         backURL=req.header('Referer') || '/'
         res.redirect(backURL)
+        res.status(200).json(req.files)
     }
 
 }
